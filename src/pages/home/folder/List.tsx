@@ -11,7 +11,7 @@ import {
 } from "~/store"
 import { OrderBy } from "~/store"
 import { Col, cols, ListItem } from "./ListItem"
-
+import { handleBgContextMenu } from "~/hooks/useUtil"
 const ListLayout = () => {
   const t = useT()
   const [orderBy, setOrderBy] = createSignal<OrderBy>()
@@ -41,7 +41,15 @@ const ListLayout = () => {
     }
   }
   return (
-    <VStack class="list" w="$full" spacing="$1">
+    <VStack
+      class="list"
+      w="$full"
+      spacing="$1"
+      minH={100}
+      onContextMenu={(event: MouseEvent) => {
+        handleBgContextMenu(2, event)
+      }}
+    >
       <HStack class="title" w="$full" p="$2">
         <HStack w={cols[0].w} spacing="$1">
           <Show when={checkboxOpen()}>

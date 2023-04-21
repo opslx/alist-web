@@ -33,7 +33,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
     return null
   }
   const { setPathAs } = usePath()
-  const { show } = useContextMenu({ id: 1 })
+  const { show, hideAll } = useContextMenu({ id: 1 })
   return (
     <Motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -66,6 +66,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
             selectAll(false)
             selectIndex(props.index, true, true)
           })
+          hideAll()
           show(e, { props: props.obj })
         }}
       >

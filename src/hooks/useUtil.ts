@@ -4,6 +4,7 @@ import { getHideFiles, objStore } from "~/store"
 import { Obj } from "~/types"
 import { fetchText, notify, pathJoin } from "~/utils"
 import { useT, useLink, useRouter } from "."
+import { useContextMenu } from "solid-contextmenu"
 
 export const useUtil = () => {
   const t = useT()
@@ -31,4 +32,15 @@ export const useFetchText = () => {
     return fetchText(proxyLink(objStore.obj, true))
   }
   return createResource("", fetchContent)
+}
+
+export const handleBgContextMenu = (id: number, event: any) => {
+  const { show, hideAll } = useContextMenu({ id: id })
+  const hasDiv = Array.from(event.target.childNodes).some((node) => {
+    return node.nodeType === Node.ELEMENT_NODE && node.tagName === "DIV"
+  })
+  if (event.target.nodeName === "DIV" && hasDiv) {
+    hideAll()
+    show(event)
+  }
 }

@@ -10,6 +10,7 @@ import {
 } from "solid-js"
 import { layout } from "~/store"
 import { ContextMenu } from "./context-menu"
+import { BgContextMenu } from "./bg-context-menu"
 import { Pager } from "./Pager"
 import { useLink, useT } from "~/hooks"
 import { objStore } from "~/store"
@@ -87,6 +88,7 @@ const Folder = () => {
       </Switch>
       <Pager />
       <Search />
+      <BgContextMenu />
       <ContextMenu />
     </>
   )
