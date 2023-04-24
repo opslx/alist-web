@@ -39,7 +39,7 @@ export const handleBgContextMenu = (id: number, event: any) => {
   const hasDiv = Array.from(event.target.childNodes).some((node) => {
     return node.nodeType === Node.ELEMENT_NODE && node.tagName === "DIV"
   })
-  if (event.target.nodeName === "DIV" && hasDiv) {
+  if (event.target.nodeName === "DIV" || hasDiv) {
     hideAll()
     show(event)
   }
